@@ -1,0 +1,17 @@
+unsigned int countBits(unsigned long long n){
+  //your code here
+  //vector<int> binaryNum;
+  unsigned int result = 0;
+  unsigned long long remainder = 0;
+  while(n > 0) //note that the binary number vector is written backwards
+  {
+    remainder = n % 2;
+    n /= 2;
+    if(remainder == 1)
+    {
+      result++;
+    }
+    //binaryNum.push_back(remainder);
+  }
+  return result;
+}

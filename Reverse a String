@@ -1,0 +1,56 @@
+//Reverse a string of words(Note: only reverse words that have 5 or more letters i.e. hello to olleh or Hey to Hey)
+#include <vector>
+using namespace std;
+void reverseHelper(string &word)
+{
+  int p1 = 0;
+  while(word[++p1]!='\0');
+  p1 -= 1;
+  int p2 = 0;
+  char temp;
+  while( p2 < p1)
+  {
+    temp = word[p2];
+    word[p2] = word[p1];
+    word[p1] = temp;
+    p1--;
+    p2++;
+  }
+}
+void populateWordList(vector<string> &list, const string &str)
+{
+  string word = "";
+  for (auto x : str) 
+  {
+        if (x == ' ' )
+        {
+            list.push_back(word);
+            word = "";
+        }
+        else {
+            word = word + x;
+        }
+  }
+  //get the last word
+  list.push_back(word);
+}
+std::string spinWords(const std::string &str)
+{
+  vector<string> wordList;
+  string result;
+  populateWordList(wordList, str);
+  for(int i = 0; i < wordList.size(); i++)
+  {
+      if(wordList[i].length() >= 5)
+      {
+        reverseHelper(wordList[i]);
+        result += wordList[i];
+        result += " ";
+      }
+      else
+      {
+        result += wordList[i];
+        result += " ";
+      }
+  }
+  return result.substr(0, result.length() - 1);
